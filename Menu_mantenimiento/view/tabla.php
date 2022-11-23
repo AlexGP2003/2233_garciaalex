@@ -30,16 +30,18 @@
     }
     $user = $_SESSION['mantenimiento'];
     ?>
+    <div class="nav_menu_nav">
     <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <?php
         echo "<a class='navbar-brand'> $user</a>";
         ?>
-        <button type="button" class="btn btn-secondary">Log Out</button>
+        <button type="button" onclick="window.location.href='../proc/logout.php'" class="btn btn-secondary">Log Out</button>
         </form>
     </div>
     </nav>
-    <div class="flex">
+    </div>
+    <div class="flex tabla_menu_nav">
         <div id="contenido_tabla"></div>
     </div>
 </body>

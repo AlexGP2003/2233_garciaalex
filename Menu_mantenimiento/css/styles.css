@@ -282,10 +282,35 @@ body{
 
 /* Table */
 
-.boton_tabla_logout{
-	border-color: #4C489D;
-	background-color: #7875B5 !important;
+.nav_menu_nav{
+	width: 100%;
+	height: 6%;
+}
+
+.tabla_menu_nav{
+width: 100%;
+height: 94%;
+/* flex-direction: column; */
+}
+
+.div_botones{
+	background-color: #212529;
+	text-align: center;
+	padding: 2%;
+}
+
+.table_con_botones{
+	margin-bottom: 0 !important;
+}
+
+.boton_muestra_pagina{
+	background-color: white;
 	color: black;
+}
+
+
+.contenido_tabla{
+	width: 100%;
 }
 /* clase para centrar contenido en horizontal y vertical (lo centra respecto al elemento padre) */
 .flex{

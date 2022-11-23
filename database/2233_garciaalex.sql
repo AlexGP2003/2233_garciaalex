@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2022 a las 22:06:22
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 23-11-2022 a las 23:40:16
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,7 +69,6 @@ INSERT INTO `tbl_camarero` (`id_camarero`, `nombre_camarero`, `Apellido`, `corre
 CREATE TABLE `tbl_mantenimiento` (
   `id_mantenimiento` int(11) NOT NULL,
   `hora_incidencia` varchar(20) NOT NULL,
-  `tel_mantenimiento` int(9) NOT NULL,
   `correo_mantenimiento` varchar(40) NOT NULL,
   `id_sala` int(11) NOT NULL,
   `id_mesa` int(11) NOT NULL,
@@ -80,14 +79,14 @@ CREATE TABLE `tbl_mantenimiento` (
 -- Volcado de datos para la tabla `tbl_mantenimiento`
 --
 
-INSERT INTO `tbl_mantenimiento` (`id_mantenimiento`, `hora_incidencia`, `tel_mantenimiento`, `correo_mantenimiento`, `id_sala`, `id_mesa`, `descripcion`) VALUES
-(3, '14/11/22 05:40:53 PM', 965434321, 'alex@gmail.com', 1, 5, 'Hola falla algo'),
-(4, '14/11/22 06:10:40 PM', 0, 'alex@gmail.com', 3, 19, ''),
-(5, '14/11/22 06:12:09 PM', 0, '', 3, 19, ''),
-(6, '14/11/22 06:27:06 PM', 965434321, 'a', 1, 1, 'sda'),
-(7, '14/11/22 06:28:20 PM', 965434321, 'a', 1, 2, 'sad'),
-(8, '15/11/22 05:39:04 PM', 965434321, 'alex@gmail.com', 3, 19, 'mesa rota'),
-(9, '17/11/22 04:39:22 PM', 123456789, 'alex@gmail.com', 1, 1, 'zx');
+INSERT INTO `tbl_mantenimiento` (`id_mantenimiento`, `hora_incidencia`, `correo_mantenimiento`, `id_sala`, `id_mesa`, `descripcion`) VALUES
+(3, '14/11/22 05:40:53 PM', 'alex@gmail.com', 1, 5, 'Hola falla algo'),
+(4, '14/11/22 06:10:40 PM', 'alex@gmail.com', 3, 19, ''),
+(5, '14/11/22 06:12:09 PM', '', 3, 19, ''),
+(6, '14/11/22 06:27:06 PM', 'a', 1, 1, 'sda'),
+(7, '14/11/22 06:28:20 PM', 'a', 1, 2, 'sad'),
+(8, '15/11/22 05:39:04 PM', 'alex@gmail.com', 3, 19, 'mesa rota'),
+(9, '17/11/22 04:39:22 PM', 'alex@gmail.com', 1, 1, 'zx');
 
 -- --------------------------------------------------------
 
