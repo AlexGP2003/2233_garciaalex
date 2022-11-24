@@ -42,7 +42,7 @@
     </nav>
     </div>
     <div class="flex tabla_menu_nav">
-        <div id="contenido_tabla"></div>
+        <div><div class='div_botones'><input type="text" placeholder="Filtro 1." id="val1" onkeyup="filtro()"><input type="text" placeholder="Filtro 2." id="val2" onkeyup="filtro()"></div><div id="contenido_tabla"></div></div>
     </div>
 </body>
 </html>
