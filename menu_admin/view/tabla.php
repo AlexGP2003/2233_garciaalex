@@ -24,11 +24,11 @@
 <body>
     <?php
     session_start();
-    if(!isset($_SESSION['mantenimiento'])){
+    if(!isset($_SESSION['admin'])){
         echo "<script>window.location.href='../index.php'</script>";
         die();
     }
-    $user = $_SESSION['mantenimiento'];
+    $user = $_SESSION['admin'];
     ?>
     <div class="nav_menu_nav">
     <nav class="navbar navbar-dark bg-dark">

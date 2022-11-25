@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2022 a las 23:40:16
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.0.15
+-- Tiempo de generación: 25-11-2022 a las 18:34:16
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,8 +32,16 @@ USE `2233_garciaalex`;
 CREATE TABLE `tbl_admin` (
   `Id` int(11) NOT NULL,
   `correo` varchar(50) NOT NULL,
-  `pass` text NOT NULL
+  `pass` text NOT NULL,
+  `nombre` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_admin`
+--
+
+INSERT INTO `tbl_admin` (`Id`, `correo`, `pass`, `nombre`) VALUES
+(1, 'admin@admin.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'admin\r\n');
 
 -- --------------------------------------------------------
 
@@ -83,10 +91,8 @@ INSERT INTO `tbl_mantenimiento` (`id_mantenimiento`, `hora_incidencia`, `correo_
 (3, '14/11/22 05:40:53 PM', 'alex@gmail.com', 1, 5, 'Hola falla algo'),
 (4, '14/11/22 06:10:40 PM', 'alex@gmail.com', 3, 19, ''),
 (5, '14/11/22 06:12:09 PM', '', 3, 19, ''),
-(6, '14/11/22 06:27:06 PM', 'a', 1, 1, 'sda'),
 (7, '14/11/22 06:28:20 PM', 'a', 1, 2, 'sad'),
-(8, '15/11/22 05:39:04 PM', 'alex@gmail.com', 3, 19, 'mesa rota'),
-(9, '17/11/22 04:39:22 PM', 'alex@gmail.com', 1, 1, 'zx');
+(8, '15/11/22 05:39:04 PM', 'alex@gmail.com', 3, 19, 'mesa rota');
 
 -- --------------------------------------------------------
 
@@ -97,7 +103,7 @@ INSERT INTO `tbl_mantenimiento` (`id_mantenimiento`, `hora_incidencia`, `correo_
 CREATE TABLE `tbl_mesa` (
   `id_mesa` int(11) NOT NULL,
   `numero_mesa` int(2) NOT NULL,
-  `estado_mesa` enum('Disponible','Mantenimiento','Ocupado') NOT NULL,
+  `estado_mesa` enum('Disponible','Mantenimiento','Ocupado','Reservado') NOT NULL,
   `sillas_mesa` int(2) NOT NULL,
   `id_sala` int(11) NOT NULL,
   `foto` text NOT NULL
@@ -109,9 +115,9 @@ CREATE TABLE `tbl_mesa` (
 
 INSERT INTO `tbl_mesa` (`id_mesa`, `numero_mesa`, `estado_mesa`, `sillas_mesa`, `id_sala`, `foto`) VALUES
 (1, 1, 'Mantenimiento', 6, 1, ''),
-(2, 2, 'Disponible', 4, 1, ''),
-(3, 3, 'Disponible', 4, 1, ''),
-(4, 4, 'Disponible', 4, 1, ''),
+(2, 2, 'Disponible', 2, 1, ''),
+(3, 3, 'Ocupado', 4, 1, ''),
+(4, 4, 'Reservado', 4, 1, ''),
 (5, 5, 'Disponible', 4, 1, ''),
 (6, 6, 'Disponible', 4, 1, ''),
 (7, 7, 'Disponible', 4, 1, ''),
@@ -223,17 +229,18 @@ CREATE TABLE `tbl_sala` (
   `id_sala` int(11) NOT NULL,
   `nombre_sala` varchar(20) NOT NULL,
   `tipo_sala` varchar(30) NOT NULL,
-  `desc_sala` text NOT NULL
+  `desc_sala` text NOT NULL,
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_sala`
 --
 
-INSERT INTO `tbl_sala` (`id_sala`, `nombre_sala`, `tipo_sala`, `desc_sala`) VALUES
-(1, 'SalaInterior1', 'Interior', 'Sala con mesas'),
-(2, 'SalaInterior2', 'Interior', 'Sala con mesas'),
-(3, 'SalaExterior', 'Exterior', 'Sala con mesas');
+INSERT INTO `tbl_sala` (`id_sala`, `nombre_sala`, `tipo_sala`, `desc_sala`, `foto`) VALUES
+(1, 'Sala Interior 1', 'Interior', 'Sala con mesas', ''),
+(2, 'Sala Interior 2', 'Interior', 'Sala con mesas', ''),
+(3, 'Sala Exterior 1', 'Exterior', 'Sala con mesas', '');
 
 -- --------------------------------------------------------
 
@@ -322,7 +329,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT de la tabla `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_camarero`

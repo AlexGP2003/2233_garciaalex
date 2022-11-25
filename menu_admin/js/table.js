@@ -1,48 +1,5 @@
 var num_pag = 1
 
-function cambiar_estado(number,mesa){
-    Swal.fire({
-        title: 'Estas seguro de que se ha reparado?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            var formdata = new FormData();
-            formdata.append('id',number)
-            formdata.append('mesa',mesa)
-            var ajax = new XMLHttpRequest();
-            ajax.open('POST', '../proc/mantenimiento.php');
-            ajax.onload=function (){
-                if(ajax.status==200){
-                    if(ajax.responseText=="BORRADO"){
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Mantenimiento realizado',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        filtro();
-                    }else if(ajax.responseText=="err1"){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error con los datos',
-                        })
-                    }else{
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Ha sucedido un error',
-                          })
-                    }
-                }
-            }
-            ajax.send(formdata);
-        }
-      })
-}
 function filtro(){
     num_pag=1
     var tabla = document.getElementById("contenido_tabla")

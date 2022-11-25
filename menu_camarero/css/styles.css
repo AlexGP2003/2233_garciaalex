@@ -8,7 +8,7 @@ html{
 body{
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, #C7C5F4, #776BCC);		
+    background: linear-gradient(90deg, #a6a9fb, #7d8afc);		
 }
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
@@ -122,11 +122,11 @@ body{
 }
 
 .screen {		
-	background: linear-gradient(90deg, #5D54A4, #7C78B8);		
+	background: linear-gradient(90deg, #4878b0, #5772b7);		
 	position: relative;	
 	height: 600px;
 	width: 360px;	
-	box-shadow: 0px 0px 24px #5C5696;
+	box-shadow: 0px 0px 24px #569696;
 }
 
 .screen__content {
@@ -163,7 +163,7 @@ body{
 .screen__background__shape2 {
 	height: 220px;
 	width: 220px;
-	background: #6C63AC;	
+	background: #529dcb;	
 	top: -172px;
 	right: 0;	
 	border-radius: 32px;
@@ -172,7 +172,7 @@ body{
 .screen__background__shape3 {
 	height: 540px;
 	width: 190px;
-	background: linear-gradient(270deg, #5D54A4, #6A679E);
+	background: linear-gradient(270deg, #66a6e6, #26a0e6);
 	top: -24px;
 	right: 0;	
 	border-radius: 32px;
@@ -181,7 +181,7 @@ body{
 .screen__background__shape4 {
 	height: 400px;
 	width: 200px;
-	background: #7E7BB9;	
+	background: #529dcb;	
 	top: 420px;
 	right: 50px;	
 	border-radius: 60px;
@@ -201,7 +201,7 @@ body{
 .login__icon {
 	position: absolute;
 	top: 30px;
-	color: #7875B5;
+	color: #2a828f;
 }
 
 .login__input {
@@ -219,7 +219,7 @@ body{
 .login__input:focus,
 .login__input:hover {
 	outline: none;
-	border-bottom-color: #6A679E;
+	border-bottom-color: #4ad2e7;
 }
 
 .login__submit {
@@ -234,8 +234,8 @@ body{
 	display: flex;
 	align-items: center;
 	width: 100%;
-	color: #4C489D;
-	box-shadow: 0px 2px 2px #5C5696;
+	color: #2a828f;
+	box-shadow: 0px 2px 2px #759cb7;
 	cursor: pointer;
 	transition: .2s;
 }
@@ -243,14 +243,14 @@ body{
 .login__submit:active,
 .login__submit:focus,
 .login__submit:hover {
-	border-color: #6A679E;
+	border-color: #64d3cf;
 	outline: none;
 }
 
 .button__icon {
 	font-size: 24px;
 	margin-left: auto;
-	color: #7875B5;
+	color: #2a828f;
 }
 
 .social-login {	
@@ -273,7 +273,7 @@ body{
 	padding: 20px 10px;
 	color: #fff;
 	text-decoration: none;	
-	text-shadow: 0px 0px 8px #7875B5;
+	text-shadow: 0px 0px 8px #5fb3b8;
 }
 
 .social-login__icon:hover {
@@ -297,7 +297,6 @@ height: 94%;
 	padding: 2%;
 }
 .div_botones{
-	background-color: #212529;
 	text-align: center;
 	padding: 2%;
 }
@@ -315,6 +314,80 @@ height: 94%;
 .contenido_tabla{
 	width: 100%;
 }
+
+/* Clases Datos */
+.botones {
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.botones button {
+    font-size: 18px;
+}
+
+#logout {
+    float: right;
+}
+
+.tabla_datos{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+    text-align: center;
+}
+
+.tabla_datos_fondo{
+	background-color: white;
+}
+
+/* Sala */
+
+.ajuste_imagen{
+	width: 100%;
+	height: 100%;
+}
+
+.Fondo_Mesa_Static{
+	padding: 3%;
+}
+.Fondo_Mesa_imagen_disponible{
+	background-color: rgb(22, 196, 22);
+	border: 2px;
+	border-radius: 4%;
+	padding: 6%;
+
+}
+.Fondo_Mesa_imagen_ocupado{
+	background-color: rgb(230, 1, 1);
+	border: 2px;
+	border-radius: 4%;
+	padding: 6%;
+
+}
+.Fondo_Mesa_imagen_mantenimiento{
+	background-color: rgb(236, 240, 7);
+	border: 2px;
+	border-radius: 4%;
+	padding: 6%;
+
+}
+.Fondo_Mesa_imagen_reservado{
+	background-color: rgb(1, 36, 152);
+	border: 2px;
+	border-radius: 4%;
+	padding: 6%;
+}
+
+.foto_final_espacio{
+	object-fit: contain;
+
+}
+
+
+
 /* clase para centrar contenido en horizontal y vertical (lo centra respecto al elemento padre) */
 .flex{
     display: flex;
