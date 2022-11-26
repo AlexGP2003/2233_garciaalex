@@ -1,6 +1,6 @@
 sala = 1;
 inicio = true
-
+filtro_valor="";
 
 window.addEventListener("load", function(){
     var select_sala = document.getElementById("select_sala")
@@ -9,15 +9,22 @@ window.addEventListener("load", function(){
         sala = select_sala.options[select_sala.selectedIndex].value
         listar();
     })
+    var filtro = this.document.getElementById("filtro")
+    filtro.addEventListener("keyup", function(){
+        filtro_valor = filtro.value
+        listar();
+    })
 })
 function listar(){
     var tabla = document.getElementById("contenido_tabla")
     var formdata = new FormData();
     formdata.append("sala",sala)
+    formdata.append("filtro",filtro_valor)
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../proc/listar.php');
     ajax.onload=function (){
         if(ajax.status==200){
+            console.log(ajax.responseText)
             if (ajax.responseText!="err1"){
                 var resul = JSON.parse(ajax.responseText);
                 mycadena="";

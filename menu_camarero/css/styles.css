@@ -411,14 +411,14 @@ object-fit: contain;
     justify-content: center;
 }
 
-/* @media only screen and (max-width: 600px) {
-    .column-2{
-        width: 100%;
-    }
-    .column-3{
-        width: 100%;
-    }
-    .column-4{
-        width: 50%;
-    }
-} */
+@media only screen and (max-width: 1300px) {
+	.column-4{
+		width: 50%;
+	}
+} 
+
+@media only screen and (max-width: 600px) {
+	.column-4{
+		width: 100%;
+	}
+} 
