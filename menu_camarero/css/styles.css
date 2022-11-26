@@ -8,7 +8,7 @@ html{
 body{
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, #a6a9fb, #7d8afc);		
+    background: linear-gradient(90deg, #aae8f3, #81eaf8);		
 }
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
@@ -290,6 +290,7 @@ body{
 .tabla_menu_nav{
 width: 100%;
 height: 94%;
+object-fit: contain;
 /* flex-direction: column; */
 }
 
@@ -358,6 +359,7 @@ height: 94%;
 	border: 2px;
 	border-radius: 4%;
 	padding: 6%;
+	width: 100%;
 
 }
 .Fondo_Mesa_imagen_ocupado{
@@ -375,16 +377,30 @@ height: 94%;
 
 }
 .Fondo_Mesa_imagen_reservado{
-	background-color: rgb(1, 36, 152);
+	background-color: rgb(38, 72, 185);
 	border: 2px;
 	border-radius: 4%;
 	padding: 6%;
 }
 
 .foto_final_espacio{
-	object-fit: contain;
+	width: 100%;
+	height: 20%;
 
 }
+
+.funcionalidades_menu{
+	height: 30%;
+}
+
+.fondo_completo_sillas{
+	height: 70%;
+}
+.div_content_global{
+	height: 100%;
+}
+
+
 
 
 

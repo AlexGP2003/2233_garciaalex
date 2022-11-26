@@ -42,13 +42,12 @@
     </nav>
     </div>
     <div class="flex tabla_menu_nav">
-        <div>        
-            <div class='flex'>
-                <div class="column-3 div_botones"><select class="form-select" aria-label="Default select example"><option value="1" selected>Sala 1</option><option value="2">Sala 2</option><option value="3">Sala Exterior</option></select></div>
+        <div class="div_content_global">        
+            <div class='flex funcionalidades_menu'>
+                <div class="column-3 div_botones"><select class="form-select" id="select_sala" aria-label="Default select example"><option value="1" selected>Sala 1</option><option value="2">Sala 2</option><option value="3">Sala Exterior</option></select></div>
                 <div class="column-3 div_botones"><button type="button" class="btn btn-light" onclick="window.location.href='./datos.php'">Registros</button></div> 
                 <div class="column-3 div_botones"><input type="number" placeholder="Personas" class="form-control"></div>
             </div>
-            <br>
             <div class="fondo_completo_sillas" id="contenido_tabla"></div>
         </div>
     </div>
