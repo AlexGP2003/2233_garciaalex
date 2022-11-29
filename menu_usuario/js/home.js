@@ -53,6 +53,7 @@ function listar() {
     if(cambio_sala){
         set_img_1 = false
     }
+    imagen_mesa=[]
     select_mesa = document.getElementById("select_mesa");
     var formdata = new FormData();
     formdata.append("sala",sala);
@@ -91,5 +92,6 @@ function ajustar_mesas(){
 function change_img_mesa(){
     campo = event.srcElement
     mesa = campo.options[campo.selectedIndex].value
+    console.log(imagen_mesa)
     document.getElementById("contenedor_img_mesa").style.backgroundImage=`url("../img/`+imagen_mesa[mesa]+`")`
 }

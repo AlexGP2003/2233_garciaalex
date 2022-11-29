@@ -51,8 +51,10 @@
 			<div class="social-container">
             <button type="button" onclick="window.location.href='./reservas.php'">Gestiona tus reservas</button>
 			</div>
-			<input type="datetime-local" name="fecha_hora" />
-            <br>
+            <label for="">Dia y hora de la reserva</label>
+			<input type="datetime-local" name="fecha_hora" placeholder="Fecha y Hora de la reserva" />
+            <label for="">Hora Cierre Reserva</label>
+            <input type="time" name="fecha_final" placeholder="Hora final reserva"/>
             <div id="select_sala"></div>
             <br>
             <div id="select_mesa"></div>
