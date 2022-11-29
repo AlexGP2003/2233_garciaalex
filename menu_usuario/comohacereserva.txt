@@ -1,0 +1,35 @@
+Pasos para la reserva
+
+1- Mostrar los datos de las mesas
+
+-> Si tiene hora insertada
+
+- Consulta a la base de datos con las reservas de ese dia (Si hay mas de 4 horas de diferencia)
+
+- Si hay menos se bloquearan tambien las que estan ocupadas
+
+- Las de mantenimiento no se mostraran en ninguno de los dos casos
+
+- La reservas se mirara si hay alguna entre las horas que piden (incluyendolas)
+
+-> Si no
+
+Se mostraran por defecto hasta que seleccione hora
+
+2- Reservar la mesas
+
+Se generara la consulta para reserva la mesa con los datos insertados
+
+3- Registro de las reservas
+
+Se creara el css de la pagina donde podra eliminar la reserva o ver los datos
+
+4- Para las reservas se actualizara las paginas cada x tiempo (camareros) y se mirara si hay alguna reserva para esa hora, si es así antes de 1 hora se mostrara de un color, y al reservarse de otros
+
+Cuando llegue la hora se abrira la reserva, donde si han llegado el camarero la pasara a ocupado creando el registro como si estuviera disponible.
+
+En el caso de que no llegue o algo, el camarero podrá acceder a la reserva y cancelarla (Dejara la mesa en disponible y eliminara la reserva)
+
+En el caso de que se pase la hora la reserva se cerrará sola (igual que en el de ocupado a disponible pero automatico y eliminando la reserva)
+
+Cuando se cierre la reserva o se desocupe la mesa reservada se eliminara la reserva.
