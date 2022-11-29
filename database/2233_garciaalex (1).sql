@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2022 a las 18:34:16
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 29-11-2022 a las 18:45:34
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -106,41 +106,41 @@ CREATE TABLE `tbl_mesa` (
   `estado_mesa` enum('Disponible','Mantenimiento','Ocupado','Reservado') NOT NULL,
   `sillas_mesa` int(2) NOT NULL,
   `id_sala` int(11) NOT NULL,
-  `foto` text NOT NULL
+  `foto_mesa` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_mesa`
 --
 
-INSERT INTO `tbl_mesa` (`id_mesa`, `numero_mesa`, `estado_mesa`, `sillas_mesa`, `id_sala`, `foto`) VALUES
-(1, 1, 'Mantenimiento', 6, 1, ''),
-(2, 2, 'Disponible', 2, 1, ''),
-(3, 3, 'Ocupado', 4, 1, ''),
-(4, 4, 'Reservado', 4, 1, ''),
-(5, 5, 'Disponible', 4, 1, ''),
-(6, 6, 'Disponible', 4, 1, ''),
-(7, 7, 'Disponible', 4, 1, ''),
-(8, 8, 'Disponible', 4, 1, ''),
-(9, 9, 'Disponible', 4, 1, ''),
-(10, 10, 'Disponible', 4, 2, ''),
-(11, 11, 'Disponible', 4, 2, ''),
-(12, 12, 'Disponible', 4, 2, ''),
-(13, 13, 'Disponible', 4, 2, ''),
-(14, 14, 'Disponible', 4, 2, ''),
-(15, 15, 'Disponible', 4, 2, ''),
-(16, 16, 'Disponible', 4, 2, ''),
-(17, 17, 'Disponible', 4, 2, ''),
-(18, 18, 'Disponible', 4, 2, ''),
-(19, 1, 'Disponible', 4, 3, ''),
-(20, 2, 'Disponible', 4, 3, ''),
-(21, 3, 'Disponible', 4, 3, ''),
-(22, 4, 'Disponible', 4, 3, ''),
-(23, 5, 'Disponible', 4, 3, ''),
-(24, 6, 'Disponible', 4, 3, ''),
-(25, 7, 'Disponible', 4, 3, ''),
-(26, 8, 'Disponible', 4, 3, ''),
-(27, 9, 'Disponible', 4, 3, '');
+INSERT INTO `tbl_mesa` (`id_mesa`, `numero_mesa`, `estado_mesa`, `sillas_mesa`, `id_sala`, `foto_mesa`) VALUES
+(1, 1, 'Mantenimiento', 6, 1, 'mesa1.jpg'),
+(2, 2, 'Disponible', 2, 1, 'mesa2.webp'),
+(3, 3, 'Ocupado', 4, 1, 'mesa3.jpg'),
+(4, 4, 'Reservado', 4, 1, 'mesa4.jpg'),
+(5, 5, 'Disponible', 4, 1, 'mesa5.webp'),
+(6, 6, 'Disponible', 4, 1, 'mesa6.jpg'),
+(7, 7, 'Disponible', 2, 1, 'mesa7.jpg'),
+(8, 8, 'Disponible', 6, 1, 'mesa8.jpg'),
+(9, 9, 'Disponible', 4, 1, 'mesa9.jpg'),
+(10, 10, 'Disponible', 4, 2, 'mesa10.webp'),
+(11, 11, 'Disponible', 2, 2, 'mesa11.jpg'),
+(12, 12, 'Disponible', 4, 2, 'mesa12.jpg'),
+(13, 13, 'Disponible', 2, 2, 'mesa13.jpg'),
+(14, 14, 'Disponible', 4, 2, 'mesa14.jpg'),
+(15, 15, 'Disponible', 4, 2, 'mesa15.jpg'),
+(16, 16, 'Disponible', 2, 2, 'mesa16.jpg'),
+(17, 17, 'Disponible', 4, 2, 'mesa17.jpg'),
+(18, 18, 'Disponible', 4, 2, 'mesa18.jpg'),
+(19, 1, 'Disponible', 6, 3, 'mesa19.jpg'),
+(20, 2, 'Disponible', 4, 3, 'mesa20.jpg'),
+(21, 3, 'Disponible', 2, 3, 'mesa21.jpg'),
+(22, 4, 'Disponible', 4, 3, 'mesa22.webp'),
+(23, 5, 'Disponible', 4, 3, 'mesa23.jpg'),
+(24, 6, 'Disponible', 2, 3, 'mesa24.jpg'),
+(25, 7, 'Disponible', 4, 3, 'mesa25.jpg'),
+(26, 8, 'Disponible', 4, 3, 'mesa26.jpg'),
+(27, 9, 'Disponible', 4, 3, 'mesa27.jpg');
 
 -- --------------------------------------------------------
 
@@ -238,9 +238,9 @@ CREATE TABLE `tbl_sala` (
 --
 
 INSERT INTO `tbl_sala` (`id_sala`, `nombre_sala`, `tipo_sala`, `desc_sala`, `foto`) VALUES
-(1, 'Sala Interior 1', 'Interior', 'Sala con mesas', ''),
-(2, 'Sala Interior 2', 'Interior', 'Sala con mesas', ''),
-(3, 'Sala Exterior 1', 'Exterior', 'Sala con mesas', '');
+(1, 'Sala Interior 1', 'Interior', 'Sala con mesas', 'sala_interior_1.jpg'),
+(2, 'Sala Interior 2', 'Interior', 'Sala con mesas', 'sala_interior_2.jpg'),
+(3, 'Sala Exterior 1', 'Exterior', 'Sala con mesas', 'sala_exterior_1.png');
 
 -- --------------------------------------------------------
 
@@ -254,6 +254,13 @@ CREATE TABLE `tbl_user` (
   `correo` varchar(40) NOT NULL,
   `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`Id`, `nombre_usuario`, `correo`, `password`) VALUES
+(1, 'alex', 'alex@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
 
 --
 -- Índices para tablas volcadas
@@ -377,7 +384,7 @@ ALTER TABLE `tbl_sala`
 -- AUTO_INCREMENT de la tabla `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
