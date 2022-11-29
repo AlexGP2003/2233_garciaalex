@@ -64,7 +64,7 @@
 		<div class="overlay">
 			<div class="overlay-panel overlay-right">
 				<div class="imagen_form flex"><div id="contenedor_img_sala" class="contenedor_img_sala"></div></div>
-                <div class="imagen_form flex"><div id="contendor_img_mesa" class="contenedor_img_mesa"></div></div>
+                <div class="imagen_form flex"><div id="contenedor_img_mesa" class="contenedor_img_mesa"></div></div>
 			</div>
 		</div>
 	</div>
