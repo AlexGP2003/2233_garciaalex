@@ -197,9 +197,9 @@ input {
 }
 
 .overlay {
-	background: #e66cf4;
-	background: -webkit-linear-gradient(to right, #54145e, #9b2b76);
-	background: linear-gradient(to right, #501355, #5f1160);
+	background: #0a0a0a;
+	background: -webkit-linear-gradient(to right, #000000, #242424);
+	background: linear-gradient(to right, #363336, #3b393b);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -265,5 +265,26 @@ input {
 
 .imagen_form{
 	height: 50%;
+	width: 100%;
+}
+
+.contenedor_img_mesa{
+	border: 2px black solid;
+	border-radius: 100%;
+	width: 80%;
+	height: 80%;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.contenedor_img_sala{
+	border: 2px black solid;
+	border-radius: 100%;
+	width: 80%;
+	height: 80%;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 

@@ -1,12 +1,36 @@
 sala = 1
 mesa = 1
 
+imagen_sala=[]
+imagen_mesa=[]
+
+
 window.addEventListener("load",function(){
     salas();
     listar();
+    guardar_fotos()
 })
 
-
+function guardar_fotos(){
+    var ajax = new XMLHttpRequest();
+    ajax.open('POST', '../proc/recoger_valores_sala.php');
+    ajax.onload=function (){
+        if(ajax.status==200){
+           if(ajax.responseText!="error"){
+            resul = JSON.parse(ajax.responseText)
+            resul.forEach(element => {
+                imagen_sala.push(element.foto)
+            });
+           }
+           sala_foto = sala-1
+           console.log(sala_foto)
+           document.getElementById("contenedor_img_sala").style.backgroundImage=`url("../img/`+imagen_sala[sala_foto]+`")`
+           console.log(imagen_sala)
+        }else{
+        }
+    }
+    ajax.send();
+}
 function salas(){
     select_sala = document.getElementById("select_sala");
     var ajax = new XMLHttpRequest();
@@ -43,6 +67,7 @@ function listar() {
             });
             cadena += "</select>";
             select_mesa.innerHTML = cadena
+            guardar_fotos()
            }
         }else{
         }
