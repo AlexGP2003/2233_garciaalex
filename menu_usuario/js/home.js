@@ -8,6 +8,42 @@ cambio_sala = true;
 window.addEventListener("load",function(){
     salas();
     listar();
+    this.document.getElementById("formulario_reserva").addEventListener("submit",function(){
+        event.preventDefault()
+        error = false
+        hora_dia = document.getElementById("dia_hora_reserva").value;
+        hora_dia = hora_dia.split('T');
+        if(hora_dia.length==1){
+            error = true
+        }else{
+            hora_inicio = new Date("March 1, 2012 "+hora_dia[1]) 
+            dia = new Date(hora_dia)
+        }
+        hora_fin_valor = document.getElementById("hora_fin_reserva").value;
+        if(hora_fin_valor==null || hora_fin_valor==""){
+            error = true
+
+        }else{
+            hora_fin = new Date("March 1, 2012 "+ hora_fin_valor)    
+        }
+        if(!error){
+            dia_hoy = new Date(Date.now())
+            tiempo_entre_dias = dia-dia_hoy 
+            if (tiempo_entre_dias <= 0){
+                alert("Falla dia")
+            }else{
+                tiempo_entre_horas = hora_fin-hora_inicio
+                if(tiempo_entre_horas<=7200000 && tiempo_entre_horas>0){
+                    alert("reserva ok")
+                }else{
+                    alert("Falla tiempo")
+                }
+            }
+        }else{
+            alert("Falla datos")
+        }
+    })
+
 })
 
 function guardar_fotos(){
@@ -92,6 +128,5 @@ function ajustar_mesas(){
 function change_img_mesa(){
     campo = event.srcElement
     mesa = campo.options[campo.selectedIndex].value
-    console.log(imagen_mesa)
     document.getElementById("contenedor_img_mesa").style.backgroundImage=`url("../img/`+imagen_mesa[mesa]+`")`
 }

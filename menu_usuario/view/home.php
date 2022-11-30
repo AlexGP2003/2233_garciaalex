@@ -46,15 +46,15 @@
         </div> -->
 <div class="container" id="container">
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<form action="../proc/reserva.php" id="formulario_reserva">
 			<h1>Reserva</h1>
 			<div class="social-container">
             <button type="button" onclick="window.location.href='./reservas.php'">Gestiona tus reservas</button>
 			</div>
             <label for="">Dia y hora de la reserva</label>
-			<input type="datetime-local" name="fecha_hora" placeholder="Fecha y Hora de la reserva" />
+			<input id="dia_hora_reserva" type="datetime-local" name="fecha_hora" placeholder="Fecha y Hora de la reserva" />
             <label for="">Hora Cierre Reserva</label>
-            <input type="time" name="fecha_final" placeholder="Hora final reserva"/>
+            <input id="hora_fin_reserva" type="time" name="fecha_final" placeholder="Hora final reserva"/>
             <div id="select_sala"></div>
             <br>
             <div id="select_mesa"></div>
