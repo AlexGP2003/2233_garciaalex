@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-11-2022 a las 18:45:34
+-- Tiempo de generación: 30-11-2022 a las 18:45:18
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.15
 
@@ -214,10 +214,20 @@ INSERT INTO `tbl_registro` (`id_registro`, `fecha_inicio_registro`, `fecha_final
 
 CREATE TABLE `tbl_reserva` (
   `Id` int(11) NOT NULL,
-  `hora` varchar(14) NOT NULL,
+  `hora_inicio` time NOT NULL,
   `mesa` int(11) NOT NULL,
-  `usuario` int(11) NOT NULL
+  `usuario` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora_fin` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_reserva`
+--
+
+INSERT INTO `tbl_reserva` (`Id`, `hora_inicio`, `mesa`, `usuario`, `fecha`, `hora_fin`) VALUES
+(1, '14:00:00', 16, 1, '2022-12-12', '15:00:00'),
+(2, '14:00:00', 11, 1, '2022-12-12', '16:00:00');
 
 -- --------------------------------------------------------
 
@@ -372,7 +382,7 @@ ALTER TABLE `tbl_registro`
 -- AUTO_INCREMENT de la tabla `tbl_reserva`
 --
 ALTER TABLE `tbl_reserva`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_sala`
