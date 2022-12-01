@@ -393,15 +393,13 @@ object-fit: contain;
 	height: 30%;
 }
 
-.fondo_completo_sillas{
-	height: 70%;
-}
 .div_content_global{
 	height: 100%;
 }
 
-
-
+.not_show{
+	display: none;
+}
 
 
 /* clase para centrar contenido en horizontal y vertical (lo centra respecto al elemento padre) */

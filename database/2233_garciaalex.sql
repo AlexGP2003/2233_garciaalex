@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2022 a las 18:45:18
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.0.15
+-- Tiempo de generación: 01-12-2022 a las 18:22:09
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -65,8 +65,7 @@ INSERT INTO `tbl_camarero` (`id_camarero`, `nombre_camarero`, `Apellido`, `corre
 (1, 'Raul', 'Gonzalez', 'camarero1@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d'),
 (2, 'Alex', 'Garcia', 'alex@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d'),
 (3, 'Paco', 'Suarez', 'paco@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d'),
-(4, 'Juan', 'Carlos', 'juan@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d'),
-(5, 'Maria', 'Perez', 'maria@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d');
+(4, 'Juan', 'Carlos', 'juan@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d');
 
 -- --------------------------------------------------------
 
@@ -117,7 +116,7 @@ INSERT INTO `tbl_mesa` (`id_mesa`, `numero_mesa`, `estado_mesa`, `sillas_mesa`, 
 (1, 1, 'Mantenimiento', 6, 1, 'mesa1.jpg'),
 (2, 2, 'Disponible', 2, 1, 'mesa2.webp'),
 (3, 3, 'Ocupado', 4, 1, 'mesa3.jpg'),
-(4, 4, 'Reservado', 4, 1, 'mesa4.jpg'),
+(4, 4, 'Disponible', 4, 1, 'mesa4.jpg'),
 (5, 5, 'Disponible', 4, 1, 'mesa5.webp'),
 (6, 6, 'Disponible', 4, 1, 'mesa6.jpg'),
 (7, 7, 'Disponible', 2, 1, 'mesa7.jpg'),
@@ -204,7 +203,8 @@ INSERT INTO `tbl_registro` (`id_registro`, `fecha_inicio_registro`, `fecha_final
 (13, '14/11/22 06:30:13 PM', '14/11/22 06:30:15 PM', 6, 1, 1, 4),
 (14, '15/11/22 03:41:33 PM', '15/11/22 03:41:46 PM', 2, 1, 1, 1),
 (15, '15/11/22 05:36:35 PM', '15/11/22 05:38:17 PM', 4, 1, 3, 19),
-(16, '15/11/22 05:36:43 PM', '15/11/22 05:38:28 PM', 3, 1, 3, 20);
+(16, '15/11/22 05:36:43 PM', '15/11/22 05:38:28 PM', 3, 1, 3, 20),
+(17, '01/12/22 06:16:37 PM', '01/12/22 06:16:39 PM', 2, 2, 2, 16);
 
 -- --------------------------------------------------------
 
@@ -220,14 +220,6 @@ CREATE TABLE `tbl_reserva` (
   `fecha` date NOT NULL,
   `hora_fin` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tbl_reserva`
---
-
-INSERT INTO `tbl_reserva` (`Id`, `hora_inicio`, `mesa`, `usuario`, `fecha`, `hora_fin`) VALUES
-(1, '14:00:00', 16, 1, '2022-12-12', '15:00:00'),
-(2, '14:00:00', 11, 1, '2022-12-12', '16:00:00');
 
 -- --------------------------------------------------------
 
@@ -376,13 +368,13 @@ ALTER TABLE `tbl_personal_man`
 -- AUTO_INCREMENT de la tabla `tbl_registro`
 --
 ALTER TABLE `tbl_registro`
-  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_reserva`
 --
 ALTER TABLE `tbl_reserva`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_sala`

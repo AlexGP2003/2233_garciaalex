@@ -35,3 +35,53 @@ function checkMailExists($mail,$pdo){
     }
 }
 
+function checkSalaMesaExists($sala,$mesa,$pdo){
+    $sql = "SELECT * from tbl_mesa where id_mesa=? and id_sala=?;";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(1,$mesa);
+    $stmt->bindParam(2,$sala);
+    $stmt->execute();
+    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if(count($array)==1){
+        return true; 
+    }else{
+        return false;
+    }
+}
+
+function checkMenos2Horas($hora_ini,$hora_fin){
+    $error = false;
+    $horaInicio = new DateTime($hora_ini);
+    $horaTermino = new DateTime($hora_fin);
+    $interval = $horaInicio->diff($horaTermino);
+    if($interval->format('%R')=="-"){
+        $error = true;
+    }
+    $horas = $interval->format("%h");
+    $min = $interval->format("%i");
+    $tiempo = ($horas*60)+$min;
+    if($tiempo>120){
+        $error = true;
+    }
+    return $error;
+}
+
+function checkDiaAntes($fecha){
+    $fechaActual = date('Y-m-d');
+    $date1 = new DateTime($fechaActual);
+    $date2 = new DateTime($fecha);
+    $diff = $date1->diff($date2);
+    // will output 2 days
+    $interval = $diff->format('%R');
+    if($interval=="-"){
+        return true;
+    }else{
+        return false;
+    }
+    
+}
+
+
+
+
+

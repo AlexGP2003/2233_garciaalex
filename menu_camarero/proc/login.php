@@ -22,7 +22,9 @@ if (!empty($_POST['email']) && !empty($_POST['pass'])){
         $num = count($array);
         if($num == 1){
             session_start();
+            $_SESSION['id_camarero']=$array[0]['id_camarero'];
             $_SESSION['camarero']=$array[0]['nombre_camarero'];
+            $_SESSION['camarero_email']=$array[0]['correo_camarero'];
         }
         echo json_encode($array);
     }catch(Exception $e){

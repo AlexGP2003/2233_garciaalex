@@ -9,9 +9,11 @@ if (!isset($_POST['sala']) || !isset($_POST['filtro'])){
     die();
 }
 try{
+    include_once './function.php';
+    include_once '../../connection/conexion.php';
+    changeEstadoReservado($pdo);
     $sala = $_POST['sala'];
     $filtro = $_POST['filtro'];
-    include_once '../../connection/conexion.php';
     if(empty($filtro)){
         $sql = "SELECT * from tbl_mesa where id_sala=?";
         $stmt = $pdo->prepare($sql);

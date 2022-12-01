@@ -42,7 +42,29 @@
     </nav>
     </div>
     <div class="flex tabla_menu_nav">
-        <div><div class='div_botones flex'><div class="column-2 botones_columnas"><input type="text" class="form-control" placeholder="Filtro 1." id="val1" onkeyup="filtro()"></div><div class="column-2 botones_columnas"><input type="text" class="form-control" placeholder="Filtro 2." id="val2" onkeyup="filtro()"></div></div><div id="contenido_tabla"></div></div></div>
+        <div>
+            <div class='div_botones flex'>
+                <div class="column-4">
+                    <select id="select_formulario" class="form-select" aria-label="Default select example">
+                        <option value="1">Usuarios</option>
+                        <option value="2">Mantenimiento</option>
+                        <option value="3">Camareros</option>
+                        <option value="4">Mesas</option>
+                        <option value="5">Salas</option>
+                    </select>
+                </div>
+                <div class="column-4 botones_columnas">
+                    <input type="text" class="form-control" placeholder="Filtro 1." id="val1" onkeyup="filtro()">
+                </div>
+                <div class="column-4 botones_columnas">
+                    <input type="text" class="form-control" placeholder="Filtro 2." id="val2" onkeyup="filtro()">
+                </div>
+                <div class="column-4">
+                    <button type="button" id="Boton_Crear" class="btn btn-light">Crear</button>
+                </div>
+            </div>
+            <div id="contenido_tabla"></div>
+        </div>
     </div>
 </body>
 </html>

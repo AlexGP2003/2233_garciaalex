@@ -19,6 +19,7 @@ if (!empty($_POST['email']) && !empty($_POST['pswd'])){
         if($num == 1){
             session_start();
             $_SESSION['usuario']=$array[0]['nombre_usuario'];
+            $_SESSION['usuario_id']=$array[0]['Id'];
         }
         echo json_encode($array);
     }catch(Exception $e){
