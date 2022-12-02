@@ -54,10 +54,10 @@
                     </select>
                 </div>
                 <div class="column-4 botones_columnas">
-                    <input type="text" class="form-control" placeholder="Filtro 1." id="val1" onkeyup="filtro()">
+                    <input type="text" class="form-control" placeholder="Filtro 1." id="val1">
                 </div>
                 <div class="column-4 botones_columnas">
-                    <input type="text" class="form-control" placeholder="Filtro 2." id="val2" onkeyup="filtro()">
+                    <input type="text" class="form-control" placeholder="Filtro 2." id="val2">
                 </div>
                 <div class="column-4">
                     <button type="button" id="Boton_Crear" class="btn btn-light">Crear</button>

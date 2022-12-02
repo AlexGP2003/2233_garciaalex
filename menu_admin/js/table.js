@@ -1,7 +1,6 @@
 var num_pag = 1
 
 function filtro(){
-    num_pag=1
     var tabla = document.getElementById("contenido_tabla")
     var val1 = document.getElementById("val1").value;
     var val2 = document.getElementById("val2").value;
@@ -24,10 +23,37 @@ function filtro(){
             if (ajax.responseText!="err1"){
                 var resul = JSON.parse(ajax.responseText);
                 cant_pags= resul.pop()
-                mycadena="<div><table class='table table-dark table-hover table_con_botones'><thead class='table-dark'><th>Hora Incidencia</th><th>Correo camarero</th><th>Sala</th><th>Mesa</th><th>Descripcion</th></thead>";
-                resul.forEach( function(mant) {
-                   mycadena += "<tbody id="+mant.id_mantenimiento+" onclick=cambiar_estado("+mant.id_mantenimiento+","+mant.numero_mesa+")><td>"+mant.hora_incidencia+"</td><td>"+mant.correo_mantenimiento+"</td><td>"+mant.nombre_sala+"</td><td>"+mant.numero_mesa+"</td><td>"+mant.descripcion+"</td></tbody>"
-                })  
+                mycadena="<div><table class='table table-dark table-hover table_con_botones'><thead class='table-dark'>"
+                if(select==1){
+                    mycadena += "<thead><th>Nombre User</th><th>Correo User</th><th>Acciones</th></thead>";
+                    resul.forEach( function(val) {
+                        mycadena += "<tbody><td>"+val.nombre_usuario+"</td><td>"+val.correo+"</td><td><button>Eliminar</button></td></tbody>"
+                     })  
+                }else if(select==2){
+                    mycadena += "<thead><th>Nombre</th><th>Apellido</th><th>Correo</th><th>Acciones</th></thead>";
+                    resul.forEach( function(val) {
+                        mycadena += "<tbody><td>"+val.Nombre+"</td><td>"+val.Apellido+"</td><td>"+val.Correo+"</td><td><button>Modificar</button><button>Eliminar</button></td></tbody>"
+                     }) 
+                }else if(select==3){
+                    mycadena += "<thead><th>Nombre</th><th>Apellido</th><th>Correo</th><th>Acciones</th></thead>";
+                    resul.forEach( function(val) {
+                        mycadena += "<tbody><td>"+val.nombre_camarero+"</td><td>"+val.Apellido+"</td><td>"+val.correo_camarero+"</td><td><button>Modificar</button><button>Eliminar</button></td></tbody>"
+                     }) 
+                }else if(select==4){
+                    mycadena += "<thead><th>Numero Mesa</th><th>Estado</th><th>Sillas</th><th>Sala</th><th>Foto</th><th>Acciones</th></thead>";
+                    resul.forEach( function(val) {
+                        mycadena += "<tbody><td>"+val.numero_mesa+"</td><td>"+val.estado_mesa+"</td><td>"+val.sillas_mesa+"</td><td>"+val.nombre_sala+"</td><td>"+val.foto_mesa+"</td><td><button>Modificar</button><button>Eliminar</button></td></tbody>"
+                     }) 
+                }else if(select==5){
+                    mycadena += "<thead><th>Nombre</th><th>Tipo Sala</th><th>Descripción</th><th>Foto</th><th>Acciones</th></thead>";
+                    resul.forEach( function(val) {
+                        mycadena += "<tbody><td>"+val.nombre_sala+"</td><td>"+val.tipo_sala+"</td><td>"+val.desc_sala+"</td><td>"+val.foto+"</td><td><button>Modificar</button><button>Eliminar</button></td></tbody>"
+                     }) 
+                }else{
+                    mycadena = "ERROR";
+                }
+                
+
                 mycadena += "</table><div class='div_botones'>"
                 if (num_pag<=1){
                     mycadena+="<button type='button' class='btn btn-secondary disabled'><i class='fa-solid fa-circle-arrow-left'></i></button>"
@@ -67,6 +93,15 @@ function cambiar_pag_der(){
 window.addEventListener("load",function(){
     filtro();
     document.getElementById("select_formulario").addEventListener("change",function(){
+        num_pag = 1
+        filtro();
+    })
+    this.document.getElementById("val1").addEventListener("keyup",function(){
+        num_pag = 1
+        filtro();
+    })
+    this.document.getElementById("val2").addEventListener("keyup",function(){
+        num_pag = 1
         filtro();
     })
 })

@@ -43,11 +43,18 @@
     </div>
     <div class="flex tabla_menu_nav">
         <div class="div_content_global">
+            <br>
+            <br>
             <div class="flex leyenda">
-                <div class="column-4"></div>
-                <div class="column-4"></div>
-                <div class="column-4"></div>
-                <div class="column-4"></div>
+                <h2>Leyenda</h2>
+            </div>
+            <br>
+            <br>
+            <div class="flex leyenda">
+                <div class="column-4 centrado">Disponible <i class="fa-solid fa-square" style="color: green;"></i></div>
+                <div class="column-4 centrado">Reservado <i class="fa-solid fa-square" style="color: blue;"></i></div>
+                <div class="column-4 centrado">Ocupado <i class="fa-solid fa-square" style="color: red;"></i></div>
+                <div class="column-4 centrado">Mantenimiento <i class="fa-solid fa-square" style="color: yellow;"></i></div>
             </div>        
             <div class='flex funcionalidades_menu'>
                 <div class="column-3 div_botones"><select class="form-select" id="select_sala" aria-label="Default select example"><option value="1" selected>Sala 1</option><option value="2">Sala 2</option><option value="3">Sala Exterior</option></select></div>
