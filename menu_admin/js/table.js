@@ -110,29 +110,470 @@ function add_all(){
 // User
 
 function del_user(id){
-
+    Swal.fire({
+        title: 'Estas seguro?',
+        text: "No podrás volver atrás!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, bórralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            var formdata = new FormData();
+            formdata.append("id",id);
+            var ajax = new XMLHttpRequest();
+            ajax.open('POST', '../proc/users/delete.php');
+            ajax.onload=function (){
+                if(ajax.status==200){
+                    num_pag=1
+                    filtro();
+                    if(ajax.responseText=="BORRADO"){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Usuario eliminado!',
+                    })
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'No se pudo eliminar!',
+                    })
+                    }
+                }
+            }
+            ajax.send(formdata)
+        }
+      })
 }
+
 // Mantenimiento
 
 function add_mant(){
+     var form = '<h3 id="titulo_form">Añadir Mantenimiento</h3><form method="POST" onsubmit="validar_form_add_mant()">'
+     form += '<br><div class="mb-3"><label id="label_form" class="form-label">Nombre</label>'
+     form +=  '<input type="text" class="form-control" name="name" id="name_add_mant"></div>'
+     form += '<br><div class="mb-3"><label id="label_form" class="form-label">Apellido</label>'
+     form +=  '<input type="text" class="form-control" name="surname" id="surname_add_mant"></div>'
+     form += '<br><div class="mb-3"><label id="label_form" class="form-label">Correo</label>'
+     form +=  '<input type="mail" class="form-control" name="mail" id="mail_add_mant"></div>'
+     form += '<br><div class="mb-3"><label id="label_form" class="form-label">Contraseña</label>'
+     form +=  '<input type="password" class="form-control" name="pass" id="pass_add_mant"></div>'
+    form += '<br><br><div class="column-1"><input class="btn btn-primary" type="submit" name="btn_enviar" value="Enviar"></div></form></div>'
+    Swal.fire({
+        html: form,           
+        showConfirmButton:false,
+    })  
 }
 
+function validar_form_add_mant(){
+    event.preventDefault()
+    var nombre = document.getElementById("name_add_mant").value
+    var Apellido = document.getElementById("surname_add_mant").value
+    var email = document.getElementById("mail_add_mant").value
+    var pass = document.getElementById("pass_add_mant").value
+    lleno = true;
+    if(nombre == null || nombre.length == 0){
+        lleno = false;
+    }
+    if(Apellido == null || Apellido.length == 0){
+        lleno = false;
+    }
+    if(pass == null || pass.length == 0){
+        lleno = false;
+    }
+    if(email == null || email.length == 0 || !(/\S+@\S+\.\S+/.test(email))){
+        lleno = false
+    }
+    if(!lleno){
+        Swal.fire({
+            title: 'Tienes que rellenar los campos del formulario correctamente',
+            icon: 'warning',
+        })
+    }else{
+        var formdata = new FormData(event.srcElement);
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', '../proc/mantenimiento/add.php');
+        ajax.onload=function (){
+            if(ajax.status==200){
+                if(ajax.responseText=="CREADO"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Usuario Creado',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                      filtro()
+                }else if(ajax.responseText=="MailUsado"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Mail ya usado',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+                else{
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Sucedió un error',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+            }
+        }
+        ajax.send(formdata);
+}
+}
+
+function validar_form_mod_mant(){
+    event.preventDefault()
+    var id = document.getElementById("id_mod_mant").value
+    var nombre = document.getElementById("name_mod_mant").value
+    var Apellido = document.getElementById("surname_mod_mant").value
+    var email = document.getElementById("mail_mod_mant").value
+    lleno = true;
+    if(nombre == null || nombre.length == 0){
+        lleno = false;
+    }
+    if(id == null || id.length == 0){
+        lleno = false;
+    }
+    if(Apellido == null || Apellido.length == 0){
+        lleno = false;
+    }
+    if(email == null || email.length == 0 || !(/\S+@\S+\.\S+/.test(email))){
+        lleno = false
+    }
+    if(!lleno){
+        Swal.fire({
+            title: 'Tienes que rellenar los campos del formulario correctamente',
+            icon: 'warning',
+        })
+    }else{
+        var formdata = new FormData(event.srcElement);
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', '../proc/mantenimiento/mod.php');
+        ajax.onload=function (){
+            if(ajax.status==200){
+                if(ajax.responseText=="MODIFICADO"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Usuario Modificado',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                      filtro()
+                }else if(ajax.responseText=="MailUsado"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Mail ya usado',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+                else{
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Sucedió un error',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+            }
+        }
+        ajax.send(formdata);
+}
+}
+
+
 function mod_mant(id){
+    var formdata = new FormData();
+    formdata.append("id",id);
+    var ajax = new XMLHttpRequest();
+    ajax.open('POST', '../proc/mantenimiento/getDatos.php');
+    ajax.onload=function (){
+    if(ajax.status==200){
+        if(ajax.responseText=="error"){
+            Swal.fire({
+                icon: 'error',
+                title: 'No se pudo recoger los datos',
+            })
+        }else{
+            var datos = JSON.parse(ajax.responseText)
+            var form = '<h3 id="titulo_form">Modificar Mantenimiento</h3><form method="POST" onsubmit="validar_form_mod_mant()">'
+            form += '<br><div class="mb-3"><label id="label_form" class="form-label" >Nombre</label>'
+            form +=  '<input type="hidden" class="form-control" name="id" value="'+datos[0].Id+'" id="id_mod_mant">'
+            form +=  '<input type="text" class="form-control" name="name" value="'+datos[0].Nombre+'" id="name_mod_mant"></div>'
+            form += '<br><div class="mb-3"><label id="label_form" class="form-label" >Apellido</label>'
+            form +=  '<input type="text" class="form-control" name="surname" id="surname_mod_mant" value="'+datos[0].Apellido+'"></div>'
+            form += '<br><div class="mb-3"><label id="label_form" class="form-label" >Correo</label>'
+            form +=  '<input type="mail" class="form-control" name="mail" id="mail_mod_mant" value="'+datos[0].Correo+'"></div>'
+            form += '<br><br><div class="column-1"><input class="btn btn-primary" type="submit" name="btn_enviar" value="Enviar"></div></form></div>'
+            Swal.fire({
+                html: form,           
+                showConfirmButton:false,
+            }) 
+        }
+    }
+    }
+    ajax.send(formdata)
 }
 
 function del_mant(id){
+    Swal.fire({
+        title: 'Estas seguro?',
+        text: "No podrás volver atrás!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, bórralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            var formdata = new FormData();
+            formdata.append("id",id);
+            var ajax = new XMLHttpRequest();
+            ajax.open('POST', '../proc/mantenimiento/delete.php');
+            ajax.onload=function (){
+                if(ajax.status==200){
+                    num_pag=1
+                    filtro();
+                    if(ajax.responseText=="BORRADO"){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Empleado de mantenimiento eliminado!',
+                    })
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'No se pudo eliminar!',
+                    })
+                    }
+                }
+            }
+            ajax.send(formdata)
+        }
+      })
 }
 
 // Camarero
 
-function add_cama(){
+function validar_form_add_cam(){
+    event.preventDefault()
+    var nombre = document.getElementById("name_add_cam").value
+    var Apellido = document.getElementById("surname_add_cam").value
+    var email = document.getElementById("mail_add_cam").value
+    var pass = document.getElementById("pass_add_cam").value
+    lleno = true;
+    if(nombre == null || nombre.length == 0){
+        lleno = false;
+    }
+    if(Apellido == null || Apellido.length == 0){
+        lleno = false;
+    }
+    if(pass == null || pass.length == 0){
+        lleno = false;
+    }
+    if(email == null || email.length == 0 || !(/\S+@\S+\.\S+/.test(email))){
+        lleno = false
+    }
+    if(!lleno){
+        Swal.fire({
+            title: 'Tienes que rellenar los campos del formulario correctamente',
+            icon: 'warning',
+        })
+    }else{
+        var formdata = new FormData(event.srcElement);
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', '../proc/camareros/add.php');
+        ajax.onload=function (){
+            if(ajax.status==200){
+                if(ajax.responseText=="CREADO"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Camarero Creado',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                      filtro()
+                }else if(ajax.responseText=="MailUsado"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Mail ya usado',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+                else{
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Sucedió un error',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+            }
+        }
+        ajax.send(formdata);
+}
+}
 
+function add_cama(){
+    var form = '<h3 id="titulo_form">Añadir Camarero</h3><form method="POST" onsubmit="validar_form_add_cam()">'
+    form += '<br><div class="mb-3"><label id="label_form" class="form-label">Nombre</label>'
+    form +=  '<input type="text" class="form-control" name="name" id="name_add_cam"></div>'
+    form += '<br><div class="mb-3"><label id="label_form" class="form-label">Apellido</label>'
+    form +=  '<input type="text" class="form-control" name="surname" id="surname_add_cam"></div>'
+    form += '<br><div class="mb-3"><label id="label_form" class="form-label">Correo</label>'
+    form +=  '<input type="mail" class="form-control" name="mail" id="mail_add_cam"></div>'
+    form += '<br><div class="mb-3"><label id="label_form" class="form-label">Contraseña</label>'
+    form +=  '<input type="password" class="form-control" name="pass" id="pass_add_cam"></div>'
+   form += '<br><br><div class="column-1"><input class="btn btn-primary" type="submit" name="btn_enviar" value="Enviar"></div></form></div>'
+   Swal.fire({
+       html: form,           
+       showConfirmButton:false,
+   })  
+}
+
+function validar_form_mod_cam(){
+    event.preventDefault()
+    var id = document.getElementById("id_mod_cam").value
+    var nombre = document.getElementById("name_mod_cam").value
+    var Apellido = document.getElementById("surname_mod_cam").value
+    var email = document.getElementById("mail_mod_cam").value
+    lleno = true;
+    if(nombre == null || nombre.length == 0){
+        lleno = false;
+    }
+    if(id == null || id.length == 0){
+        lleno = false;
+    }
+    if(Apellido == null || Apellido.length == 0){
+        lleno = false;
+    }
+    if(email == null || email.length == 0 || !(/\S+@\S+\.\S+/.test(email))){
+        lleno = false
+    }
+    if(!lleno){
+        Swal.fire({
+            title: 'Tienes que rellenar los campos del formulario correctamente',
+            icon: 'warning',
+        })
+    }else{
+        var formdata = new FormData(event.srcElement);
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', '../proc/camareros/mod.php');
+        ajax.onload=function (){
+            if(ajax.status==200){
+                if(ajax.responseText=="MODIFICADO"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Camarero Modificado',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                      filtro()
+                }else if(ajax.responseText=="MailUsado"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Mail ya usado',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+                else{
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Sucedió un error',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+            }
+        }
+        ajax.send(formdata);
+}
 }
 
 function mod_cama(id){
+    var formdata = new FormData();
+    formdata.append("id",id);
+    var ajax = new XMLHttpRequest();
+    ajax.open('POST', '../proc/camareros/getDatos.php');
+    ajax.onload=function (){
+    if(ajax.status==200){
+        if(ajax.responseText=="error"){
+            Swal.fire({
+                icon: 'error',
+                title: 'No se pudo recoger los datos',
+            })
+        }else{
+            var datos = JSON.parse(ajax.responseText)
+            var form = '<h3 id="titulo_form">Modificar Camarero</h3><form method="POST" onsubmit="validar_form_mod_cam()">'
+            form += '<br><div class="mb-3"><label id="label_form" class="form-label" >Nombre</label>'
+            form +=  '<input type="hidden" class="form-control" name="id" value="'+datos[0].id_camarero+'" id="id_mod_cam">'
+            form +=  '<input type="text" class="form-control" name="name" value="'+datos[0].nombre_camarero+'" id="name_mod_cam"></div>'
+            form += '<br><div class="mb-3"><label id="label_form" class="form-label" >Apellido</label>'
+            form +=  '<input type="text" class="form-control" name="surname" id="surname_mod_cam" value="'+datos[0].Apellido+'"></div>'
+            form += '<br><div class="mb-3"><label id="label_form" class="form-label" >Correo</label>'
+            form +=  '<input type="mail" class="form-control" name="mail" id="mail_mod_cam" value="'+datos[0].correo_camarero+'"></div>'
+            form += '<br><br><div class="column-1"><input class="btn btn-primary" type="submit" name="btn_enviar" value="Enviar"></div></form></div>'
+            Swal.fire({
+                html: form,           
+                showConfirmButton:false,
+            }) 
+        }
+    }
+    }
+    ajax.send(formdata)
 }
 
 function del_cama(id){
+    Swal.fire({
+        title: 'Estas seguro?',
+        text: "No podrás volver atrás!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, bórralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            var formdata = new FormData();
+            formdata.append("id",id);
+            var ajax = new XMLHttpRequest();
+            ajax.open('POST', '../proc/camareros/delete.php');
+            ajax.onload=function (){
+                if(ajax.status==200){
+                    filtro();
+                    if(ajax.responseText=="BORRADO"){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Camarero eliminado!',
+                    })
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'No se pudo eliminar!',
+                    })
+                    }
+                }
+            }
+            ajax.send(formdata)
+        }
+      })
 }
 
 // Mesa
