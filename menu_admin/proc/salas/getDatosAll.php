@@ -5,17 +5,10 @@ if(!isset($_SESSION['admin'])){
     die();
 }
 
-if(!isset($_POST['id'])){
-    echo "error";
-    die();
-}
-
-$id = $_POST['id'];
 include_once '../../../connection/conexion.php';
 try {
-    $sql = "SELECT * FROM tbl_mesa where id_mesa=?";
+    $sql = "SELECT * FROM tbl_sala";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(1,$id);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 } catch (Exception $e) {

@@ -89,3 +89,11 @@ function checkUserExistsCam($id,$pdo){
         return true;
     }
 }
+
+function checkSillasMesa($sillas){
+    if ($sillas == 4 || $sillas == 2 || $sillas == 6) {
+        return true;
+    }else{
+        return false;
+    }
+}
