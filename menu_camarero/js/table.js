@@ -3,18 +3,19 @@ inicio = true
 filtro_valor="";
 
 window.addEventListener("load", function(){
-    var select_sala = document.getElementById("select_sala")
-    select_sala.addEventListener("change",function(){
-        select_sala.option
-        sala = select_sala.options[select_sala.selectedIndex].value
-        listar();
-    })
+    crearSelectSala()
     var filtro = this.document.getElementById("filtro")
     filtro.addEventListener("keyup", function(){
         filtro_valor = filtro.value
         listar();
     })
 })
+
+function change_estado_sala(){
+    select_sala.option
+    sala = select_sala.options[select_sala.selectedIndex].value
+    listar();
+}
 function listar(){
     var tabla = document.getElementById("contenido_tabla")
     var formdata = new FormData();
@@ -48,7 +49,7 @@ function listar(){
                     if(element.sillas_mesa==6){
                         mycadena+="<img class='ajuste_imagen' alt='mesa 6' src='../img/mesa6.png'>"                       
                     }
-                    mycadena+="</div>&nbsp;<div class='column-2 flex'><h4>Mesa "+element.id_mesa+"</h4></div></div></div>";
+                    mycadena+="</div>&nbsp;<div class='column-2 flex'><h4>Mesa "+element.numero_mesa+"</h4></div></div></div>";
                 });
                 tabla.innerHTML = mycadena
             }else{
@@ -263,5 +264,23 @@ function romper_reserva(id){
     }
     ajax.send(formdata);
 }
+
+function crearSelectSala(){
+var ajax = new XMLHttpRequest();
+    ajax.open('POST', '../proc/getSalas.php');
+    ajax.onload=function (){
+        if (ajax.status == 200){
+            resul = JSON.parse(ajax.responseText)
+            selectSalas = "<select class='form-select' onchange='change_estado_sala()' id='select_sala' aria-label='Default select example'>"
+            resul.forEach(element => {
+                selectSalas += `<option value=${element.id_sala}>${element.nombre_sala}</option>`;
+            });
+            selectSalas += "</select>"
+            document.getElementById("crearSalasDiv").innerHTML= selectSalas
+        }
+    }
+    ajax.send()
+}
+
 
 window.onload= listar,setInterval(listar,600000);

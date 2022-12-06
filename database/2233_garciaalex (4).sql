@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2022 a las 18:22:09
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 06-12-2022 a las 11:48:02
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -62,10 +62,10 @@ CREATE TABLE `tbl_camarero` (
 --
 
 INSERT INTO `tbl_camarero` (`id_camarero`, `nombre_camarero`, `Apellido`, `correo_camarero`, `contra_camarero`) VALUES
-(1, 'Raul', 'Gonzalez', 'camarero1@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d'),
 (2, 'Alex', 'Garcia', 'alex@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d'),
 (3, 'Paco', 'Suarez', 'paco@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d'),
-(4, 'Juan', 'Carlos', 'juan@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d');
+(4, 'Juan', 'Carlos', 'juan@gmail.com', '7c222fb2927d828af22f592134e8932480637c0d'),
+(6, 'Raul', 'Serena', 'raul@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
 
 -- --------------------------------------------------------
 
@@ -81,17 +81,6 @@ CREATE TABLE `tbl_mantenimiento` (
   `id_mesa` int(11) NOT NULL,
   `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tbl_mantenimiento`
---
-
-INSERT INTO `tbl_mantenimiento` (`id_mantenimiento`, `hora_incidencia`, `correo_mantenimiento`, `id_sala`, `id_mesa`, `descripcion`) VALUES
-(3, '14/11/22 05:40:53 PM', 'alex@gmail.com', 1, 5, 'Hola falla algo'),
-(4, '14/11/22 06:10:40 PM', 'alex@gmail.com', 3, 19, ''),
-(5, '14/11/22 06:12:09 PM', '', 3, 19, ''),
-(7, '14/11/22 06:28:20 PM', 'a', 1, 2, 'sad'),
-(8, '15/11/22 05:39:04 PM', 'alex@gmail.com', 3, 19, 'mesa rota');
 
 -- --------------------------------------------------------
 
@@ -113,10 +102,10 @@ CREATE TABLE `tbl_mesa` (
 --
 
 INSERT INTO `tbl_mesa` (`id_mesa`, `numero_mesa`, `estado_mesa`, `sillas_mesa`, `id_sala`, `foto_mesa`) VALUES
-(1, 1, 'Mantenimiento', 6, 1, 'mesa1.jpg'),
-(2, 2, 'Disponible', 2, 1, 'mesa2.webp'),
-(3, 3, 'Ocupado', 4, 1, 'mesa3.jpg'),
-(4, 4, 'Disponible', 4, 1, 'mesa4.jpg'),
+(1, 14, 'Disponible', 2, 2, 'mesa1.jpg'),
+(2, 12, 'Disponible', 4, 2, 'mesa2.webp'),
+(3, 666, 'Disponible', 6, 3, 'mesa3.jpg'),
+(4, 4, 'Disponible', 4, 4, 'pokemon.webp'),
 (5, 5, 'Disponible', 4, 1, 'mesa5.webp'),
 (6, 6, 'Disponible', 4, 1, 'mesa6.jpg'),
 (7, 7, 'Disponible', 2, 1, 'mesa7.jpg'),
@@ -160,13 +149,11 @@ CREATE TABLE `tbl_personal_man` (
 --
 
 INSERT INTO `tbl_personal_man` (`Id`, `Nombre`, `Apellido`, `Correo`, `pass`) VALUES
-(1, 'Freddy', 'Ramirez', 'freddy@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
-(2, 'John', 'Ramirez', 'john@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
+(1, 'Freddys', 'Ramirezsda', 'fredddsay@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
 (3, 'Luis', 'Alberto', 'luis@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
 (4, 'Roberto', 'Giraldez', 'roberto@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
 (5, 'Andrea', 'Ramirez', 'andrea@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
-(6, 'Funciona', 'porfa', 'porfa@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
-(7, 'xzcxc', 'xcczzc', 'aledasasdasdx@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
+(8, 'Manolo', 'Lama', 'furbo@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
 
 -- --------------------------------------------------------
 
@@ -189,22 +176,8 @@ CREATE TABLE `tbl_registro` (
 --
 
 INSERT INTO `tbl_registro` (`id_registro`, `fecha_inicio_registro`, `fecha_final_registro`, `num_personas_registro`, `id_camarero`, `id_sala`, `id_mesa`) VALUES
-(2, '09/11/22 07:56:46 PM', '09/11/22 08:05:19 PM', 2, 1, 1, 1),
-(3, '09/11/22 08:07:29 PM', '09/11/22 08:08:50 PM', 3, 1, 1, 1),
-(4, '09/11/22 08:09:15 PM', '09/11/22 08:09:29 PM', 3, 1, 1, 1),
-(5, '11/11/22 11:51:18 AM', '11/11/22 11:51:59 AM', 2, 1, 1, 1),
-(6, '11/11/22 11:57:22 AM', '11/11/22 11:57:44 AM', 2, 1, 1, 1),
-(7, '11/11/22 11:58:24 AM', '11/11/22 03:08:37 PM', 2, 1, 1, 1),
-(8, '11/11/22 03:55:45 PM', '11/11/22 03:55:59 PM', 2, 1, 1, 1),
-(9, '12/11/22 01:20:28 PM', '12/11/22 01:21:15 PM', 2, 1, 3, 23),
-(10, '14/11/22 04:32:18 PM', '14/11/22 06:31:48 PM', 2, 1, 2, 10),
-(11, '14/11/22 05:09:36 PM', '14/11/22 05:10:20 PM', 5, 1, 1, 3),
-(12, '14/11/22 05:13:32 PM', '14/11/22 06:22:59 PM', 1, 1, 1, 4),
-(13, '14/11/22 06:30:13 PM', '14/11/22 06:30:15 PM', 6, 1, 1, 4),
-(14, '15/11/22 03:41:33 PM', '15/11/22 03:41:46 PM', 2, 1, 1, 1),
-(15, '15/11/22 05:36:35 PM', '15/11/22 05:38:17 PM', 4, 1, 3, 19),
-(16, '15/11/22 05:36:43 PM', '15/11/22 05:38:28 PM', 3, 1, 3, 20),
-(17, '01/12/22 06:16:37 PM', '01/12/22 06:16:39 PM', 2, 2, 2, 16);
+(17, '04/12/22 12:40:51 PM', '04/12/22 12:40:53 PM', 2, 2, 1, 2),
+(18, '04/12/22 12:41:10 PM', '04/12/22 12:41:12 PM', 2, 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -240,9 +213,10 @@ CREATE TABLE `tbl_sala` (
 --
 
 INSERT INTO `tbl_sala` (`id_sala`, `nombre_sala`, `tipo_sala`, `desc_sala`, `foto`) VALUES
-(1, 'Sala Interior 1', 'Interior', 'Sala con mesas', 'sala_interior_1.jpg'),
+(1, 'Sala Gato', 'Gato', 'miau miau\r\n', 'gato.webp'),
 (2, 'Sala Interior 2', 'Interior', 'Sala con mesas', 'sala_interior_2.jpg'),
-(3, 'Sala Exterior 1', 'Exterior', 'Sala con mesas', 'sala_exterior_1.png');
+(3, 'Sala Exterior 1', 'Exterior', 'Sala con mesas', 'sala_exterior_1.png'),
+(4, 'Sala perro', 'Perro', 'guau guau', 'perro.jpg');
 
 -- --------------------------------------------------------
 
@@ -262,7 +236,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`Id`, `nombre_usuario`, `correo`, `password`) VALUES
-(1, 'alex', 'alex@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
+(3, 'Alex', 'alex@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
 
 --
 -- Índices para tablas volcadas
@@ -344,7 +318,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT de la tabla `tbl_camarero`
 --
 ALTER TABLE `tbl_camarero`
-  MODIFY `id_camarero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_camarero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_mantenimiento`
@@ -356,13 +330,13 @@ ALTER TABLE `tbl_mantenimiento`
 -- AUTO_INCREMENT de la tabla `tbl_mesa`
 --
 ALTER TABLE `tbl_mesa`
-  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_personal_man`
 --
 ALTER TABLE `tbl_personal_man`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_registro`
@@ -374,19 +348,19 @@ ALTER TABLE `tbl_registro`
 -- AUTO_INCREMENT de la tabla `tbl_reserva`
 --
 ALTER TABLE `tbl_reserva`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_sala`
 --
 ALTER TABLE `tbl_sala`
-  MODIFY `id_sala` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_sala` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
