@@ -27,26 +27,26 @@
 
 1. Camarero 
 
-> La carpeta de camarero contiene el menu para cambiar el estado de las mesas.<br>
-> Solo podrá cambiar de disponible a mantenimiento o ocupado y de reservado o ocupado a disponible.<br>
-> El motivo es el siguiente:<br>
-> + Al tener mantenimiento, no me parece correcto que el pueda cambiar el estado, para eso lo realizará el de mantenimiento.<br>
-> + Una reserva para a ser una ocpuación cuando llegan, por lo que lo unico que hara es quitar la reserva y ponerla como disponible.<br>
+> La carpeta de camarero contiene el menu para cambiar el estado de las mesas.<br><br>
+> Solo podrá cambiar de disponible a mantenimiento o ocupado y de reservado o ocupado a disponible.<br><br>
+> El motivo es el siguiente:<br><br>
+> + Al tener mantenimiento, no me parece correcto que el pueda cambiar el estado, para eso lo realizará el de mantenimiento.<br><br>
+> + Una reserva para a ser una ocpuación cuando llegan, por lo que lo unico que hara es quitar la reserva y ponerla como disponible.<br><br>
 > Tambien se podrán ver los registros, cambiar de salas y filtrar por el número de mesas.
 
 2. Admin 
 
-> El admin puede agregar mesas, personal de mantenimiento, camareros y salas.<br>
-> Usuarios no ya que para eso existe el registro.<br>
-> Podrá modificar todas las anteriores menos los usuarios, ya que solo se podra cambiar el mail o nombre y lo veo una tontería.<br>
-> Y eliminar todas.<br>
-> En el caso de los camareros que tienen registros, si se eliminan los registros también se eliminar.<br>
-> En el caso de las mesas y salas pasa lo mismo.<br>
+> El admin puede agregar mesas, personal de mantenimiento, camareros y salas.<br><br>
+> Usuarios no ya que para eso existe el registro.<br><br>
+> Podrá modificar todas las anteriores menos los usuarios, ya que solo se podra cambiar el mail o nombre y lo veo una tontería.<br><br>
+> Y eliminar todas.<br><br>
+> En el caso de los camareros que tienen registros, si se eliminan los registros también se eliminar.<br><br>
+> En el caso de las mesas y salas pasa lo mismo.<br><br>
 > Pero si se desea eliminar una sala que tiene mesas no se podrá, ya que para eliminarla se debe cambiar/eliminar las mesas.
 
 3. Usuario 
 
-> Podrá crear usuarios de diferentes emails y nombres.<br>
+> Podrá crear usuarios de diferentes emails y nombres.<br><br>
 > Tambien podrá reservar y ver sus reservas, las cuales se podrán eliminar.
 
 4. Mantenimiento 
