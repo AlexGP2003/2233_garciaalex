@@ -836,13 +836,237 @@ function del_mesa(id){
 // Sala
 
 function add_sala(){
+    var form = '<h3 id="titulo_form">Añadir Salas</h3><form enctype="multipart/form-data" method="POST" onsubmit="validar_form_add_sala()">'
+    form += '<br><div class="mb-3"><label id="label_form" class="form-label">Nombre</label>'
+    form +=  '<input type="text" class="form-control" name="name" id="name_add_sala"></div>'
+    form += '<br><div class="mb-3"><label id="label_form" class="form-label">Tipo sala</label>'
+    form +=  '<input type="text" class="form-control" name="tipo" id="tipo_add_sala"></div>'
+    form += '<br><div class="mb-3"><label id="label_form" class="form-label">Descripción</label>'
+    form +=  '<textarea class="form-control" name="desc" id="descripcion_add_sala"></textarea></div>'
+    form += '<br><div class="mb-3"><label id="label_form" class="form-label">Foto</label>'
+    form +=  '<input type="file" class="form-control" name="foto" id="foto_add_sala"></div>'
+    form += '<br><br><div class="column-1"><input class="btn btn-primary" type="submit" name="btn_enviar" value="Enviar"></div></form></div>'
+   Swal.fire({
+       html: form,           
+       showConfirmButton:false,
+   })  
+}
 
+function validar_form_add_sala(){
+    event.preventDefault()
+    var nombre = document.getElementById("name_add_sala").value
+    var tipo = document.getElementById("tipo_add_sala").value
+    var desc = document.getElementById("descripcion_add_sala").value
+    var foto = document.getElementById("foto_add_sala").value
+    lleno = true;
+    if(nombre == null || nombre.length == 0){
+        lleno = false;
+    }
+    if(tipo == null || tipo.length == 0){
+        lleno = false;
+    }
+    if(desc == null || desc.length == 0){
+        lleno = false;
+    }
+    if(foto == null || foto.length == 0 ){
+        lleno = false
+    }
+    if(!lleno){
+        Swal.fire({
+            title: 'Tienes que rellenar los campos del formulario correctamente',
+            icon: 'warning',
+        })
+    }else{
+        var formdata = new FormData(event.srcElement);
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', '../proc/salas/add.php');
+        ajax.onload=function (){
+            if(ajax.status==200){
+                if(ajax.responseText=="CREADO"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Sala Creada',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                      filtro()
+                }else if(ajax.responseText=="ERROREXTENSION"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'La imagen debe ser jpg, jpeg o webp',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }else{
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Sucedió un error',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+            }
+        }
+        ajax.send(formdata);
+}
 }
 
 function mod_sala(id){
+    var formdata = new FormData();
+    formdata.append("id",id);
+    var ajax = new XMLHttpRequest();
+    ajax.open('POST', '../proc/salas/getDatos.php');
+    ajax.onload=function (){
+    if(ajax.status==200){
+        if(ajax.responseText=="error"){
+            Swal.fire({
+                icon: 'error',
+                title: 'No se pudo recoger los datos',
+            })
+        }else{
+            var datos = JSON.parse(ajax.responseText)
+            var form = '<h3 id="titulo_form">Modificar Salas</h3><form enctype="multipart/form-data" method="POST" onsubmit="validar_form_mod_sala()">'
+            form += '<br><div class="mb-3"><input type="hidden" name="id" value='+datos[0].id_sala+'><label id="label_form" class="form-label">Nombre</label>'
+            form +=  '<input type="text" class="form-control" name="name" id="name_mod_sala" value="'+datos[0].nombre_sala+'"></div>'
+            form += '<br><div class="mb-3"><label id="label_form" class="form-label">Tipo sala</label>'
+            form +=  '<input type="text" class="form-control" name="tipo" id="tipo_mod_sala" value="'+datos[0].tipo_sala+'"></div>'
+            form += '<br><div class="mb-3"><label id="label_form" class="form-label">Descripción</label>'
+            form +=  '<textarea class="form-control" name="desc" id="descripcion_mod_sala" >'+datos[0].desc_sala+'</textarea></div>'
+            form += '<br><div class="mb-3"><label id="label_form" class="form-label">Foto</label>'
+            form +=  '<input type="file" class="form-control" name="foto" id="foto_mod_sala"></div>'
+            form += '<br><br><div class="column-1"><input class="btn btn-primary" type="submit" name="btn_enviar" value="Enviar"></div></form></div>'
+            Swal.fire({
+                html: form,           
+                showConfirmButton:false,
+            })  
+        }
+    }
+    }
+    ajax.send(formdata)
+}
+
+function validar_form_mod_sala(){
+    event.preventDefault()
+    var nombre = document.getElementById("name_mod_sala").value
+    var tipo = document.getElementById("tipo_mod_sala").value
+    var desc = document.getElementById("descripcion_mod_sala").value
+    lleno = true;
+    if(nombre == null || nombre.length == 0){
+        lleno = false;
+    }
+    if(tipo == null || tipo.length == 0){
+        lleno = false;
+    }
+    if(desc == null || desc.length == 0){
+        lleno = false;
+    }
+    if(!lleno){
+        Swal.fire({
+            title: 'Tienes que rellenar los campos del formulario correctamente',
+            icon: 'warning',
+        })
+    }else{
+        var formdata = new FormData(event.srcElement);
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', '../proc/salas/mod.php');
+        ajax.onload=function (){
+            if(ajax.status==200){
+                if(ajax.responseText=="MODIFICADO"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Sala modificada',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                      filtro()
+                }else if(ajax.responseText=="ERROREXTENSION"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'La imagen debe ser jpg, jpeg o webp',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }else{
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Sucedió un error',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+            }
+        }
+        ajax.send(formdata);
+}
 }
 
 function del_sala(id){
+    Swal.fire({
+        title: 'Estas seguro?',
+        text: "No podrás volver atrás!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, bórralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            var formdata = new FormData();
+            formdata.append("id",id);
+            var ajax = new XMLHttpRequest();
+            ajax.open('POST', '../proc/salas/checkMesas.php');
+            ajax.onload=function (){
+                if(ajax.status==200){
+                    if(ajax.responseText=="MASMESAS"){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Esta sala tiene mesas asignadas y no se puede eliminar',
+                            text: 'Libérala de mesas y la podrás eliminar',
+                          })
+                    }else if(ajax.responseText == "LIBRE"){ 
+                        mesasDeletePostCheck(id)
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Algo fallo!',
+                          })
+                    }
+                }
+            }
+            ajax.send(formdata)
+        }
+      })
+}
+
+function mesasDeletePostCheck(id){
+    var formdata = new FormData();
+    formdata.append("id",id);
+    var ajax = new XMLHttpRequest();
+    ajax.open('POST', '../proc/salas/delete.php');
+    ajax.onload=function (){
+        if(ajax.status==200){
+            filtro();
+            if(ajax.responseText=="BORRADO"){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sala eliminada!',
+            })
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se pudo eliminar!',
+            })
+            }
+        }
+    }
+    ajax.send(formdata)
 }
 
 window.addEventListener("load",function(){
