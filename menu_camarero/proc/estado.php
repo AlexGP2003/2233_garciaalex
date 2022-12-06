@@ -8,7 +8,7 @@ include_once '../../connection/conexion.php';
 if(isset($_POST['id'])){
     $id=$_POST['id'];
 }else{
-    echo "error";
+    echo "error1";
     die();
 }
     if(isset($_POST['estado'])){
@@ -37,12 +37,12 @@ if(isset($_POST['id'])){
             $estadoactual = $mesas[0]['estado_mesa'];
         }
         }catch(Exception $e){
-            echo "error";        
+            echo "error2";        
         }
-        if(isset($_POST['num_personas'])){
+        if(!empty($_POST['num_personas'])){
             $num_personas=$_POST['num_personas'];
             if($num_personas>6 || $num_personas<0){
-                echo "error";   
+                echo "error3";   
                 die();     
             }   
         }
@@ -51,11 +51,11 @@ if(isset($_POST['id'])){
                 $descripcion=$_POST['desc'];
                 $email=$_SESSION['camarero_email']; 
                 if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-                    echo "error";  
+                    echo "error4";  
                     die();
                 }
             }else{
-                echo "error";   
+                echo "error5";   
             }
         }
         
@@ -114,7 +114,7 @@ if(isset($_POST['id'])){
             }
             $pdo->commit();
         }catch(Exception $e){
-            echo "error, $e";
+            echo "error5, $e";
             $pdo->rollBack();
         }
         if($valor=="Disponible-Ocupado"){
@@ -127,6 +127,6 @@ if(isset($_POST['id'])){
             echo "mantenimiento_disponible";          
         }
     }else{
-        echo "error";
+        echo "error6";
     }
 
